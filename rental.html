@@ -1,0 +1,109 @@
+
+
+
+
+<h1>ขั้นตอนการจอง กดติ้กได้ รวมราคาได้ กดส่งยังไม่ได้ </h1>
+
+
+<article id="hour">
+  <h2 class="major">HOUR รายชั่วโมง</h2>
+
+  <form id="hour_form">
+    <div class="fields">
+      <div class="field half">
+        <label for="hour_name">ชื่อลูกค้า</label>
+        <input type="text" name="name" id="hour_name" required />
+      </div>
+
+      <div class="field half">
+        <label for="hour_phone">เบอร์โทร</label>
+        <input type="text" name="phone" id="hour_phone" required />
+      </div>
+
+      <div class="field">
+  <label>สินค้า (เลือกหลายชิ้นได้)</label>
+
+  <div class="checkbox-group">
+  <label>
+    <input type="checkbox" class="item-checkbox" value="จักรยาน" />
+    <span></span>
+    จักรยาน (30฿/ชม.)
+  </label>
+
+  <label>
+    <input type="checkbox" class="item-checkbox" value="สกู๊ตเตอร์" />
+    <span></span>
+    สกู๊ตเตอร์ (30฿/ชม.)
+  </label>
+  
+  <label>
+    <input type="checkbox" class="item-checkbox" value="อื่นๆ" />
+    <span></span>
+    อื่นๆ (30฿/ชม.)
+  </label>
+</div>
+
+</div>
+
+
+      <div class="field half">
+        <label for="start_date">วันที่เริ่มเช่า</label>
+        <input type="date" name="start_date" id="start_date" required />
+      </div>
+
+      <div class="field half">
+        <label for="start_time">เวลาเริ่มเช่า</label>
+        <input type="time" name="start_time" id="start_time" required />
+      </div>
+
+      <div class="field half">
+        <label for="hours">จำนวนชั่วโมง (1–24)</label>
+        <input type="number" name="hours" id="hours" min="1" max="24" required />
+      </div>
+
+      <div class="field half">
+        <label for="total_price">ราคารวม (บาท)</label>
+        <input type="text" id="total_price" readonly />
+        <input type="hidden" id="total_price_num" />
+      </div>
+
+      <div class="field">
+        <label for="hour_message">หมายเหตุ (ถ้ามี)</label>
+        <textarea name="message" id="hour_message" rows="4"></textarea>
+      </div>
+    </div>
+
+    <ul class="actions">
+      <li><input type="submit" value="ยืนยันการจอง" class="primary" /></li>
+      <li><input type="reset" value="ล้างข้อมูล" /></li>
+    </ul>
+  </form>
+
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll(".item-checkbox");
+    const hoursInput = document.getElementById("hours");
+    const totalPriceInput = document.getElementById("total_price");
+    const totalPriceHidden = document.getElementById("total_price_num");
+
+    function calculateTotal() {
+      const selectedItems = document.querySelectorAll(".item-checkbox:checked").length;
+      const hours = parseFloat(hoursInput.value) || 0;
+      const pricePerHour = 30;
+
+      const total = selectedItems * hours * pricePerHour;
+
+      totalPriceInput.value = total.toLocaleString() + " บาท";
+      totalPriceHidden.value = total;
+    }
+
+    // ทุกครั้งที่มีการเปลี่ยน checkbox หรือ ชั่วโมง ให้คำนวณใหม่
+    checkboxes.forEach(cb => cb.addEventListener("change", calculateTotal));
+    hoursInput.addEventListener("input", calculateTotal);
+  });
+</script>
+
+
+
+</article>
