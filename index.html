@@ -305,6 +305,172 @@
 
 
 
+
+<article id="day">
+  <h2 class="major">DAY รายวัน</h2>
+
+  
+  <form id="hour_form">
+    <div class="fields">
+      <div class="field half">
+        <label for="hour_name">ชื่อลูกค้า</label>
+        <input type="text" name="name" id="hour_name" required />
+      </div>
+
+      <div class="field half">
+        <label for="hour_phone">เบอร์โทร</label>
+        <input type="text" name="phone" id="hour_phone" required />
+      </div>
+
+      <div class="field">
+        <label>สินค้า (เลือกหลายชิ้นได้)</label>
+        <div class="checkbox-group">
+      
+          <label> 
+            <input type="checkbox" class="item-checkbox" value="0Driver" />
+            <span></span>Driver (หัวไม้หนึ่ง) (300฿/วัน)
+          </label>
+
+          <label>
+            <input type="checkbox" class="item-checkbox" value="1:3-Wood" />
+            <span></span>3-Wood (หัวไม้ 3) (300฿/วัน)
+          </label>
+
+          <label>
+            <input type="checkbox" class="item-checkbox" value="2:5-Wood" />
+            <span></span>5-Wood (หัวไม้ 5) (300฿/วัน)
+          </label>
+
+           <label>
+            <input type="checkbox" class="item-checkbox" value="3:3-Hybrid" />
+            <span></span>3-Hybrid (ไฮบริด 3) (300฿/วัน)
+          </label>
+
+           <label>
+            <input type="checkbox" class="item-checkbox" value="4:4-Iron" />
+            <span></span>4-Iron (เหล็ก 4) (300฿/วัน)
+          </label>
+
+           <label>
+            <input type="checkbox" class="item-checkbox" value="5:5-Iron" />
+            <span></span>5-Iron (เหล็ก 5) (300฿/วัน)
+          </label>
+
+           <label>
+            <input type="checkbox" class="item-checkbox" value="6:6-Iron" />
+            <span></span>6-Iron (เหล็ก 6) (300฿/วัน)
+          </label>
+
+           <label>
+            <input type="checkbox" class="item-checkbox" value="7:7-Iron" />
+            <span></span>7-Iron (เหล็ก 7) (300฿/วัน)
+          </label>
+
+           <label>
+            <input type="checkbox" class="item-checkbox" value="8:8-Iron" />
+            <span></span>8-Iron (เหล็ก 8) (300฿/วัน)
+          </label>
+
+           <label>
+            <input type="checkbox" class="item-checkbox" value="9:9-Iron" />
+            <span></span>9-Iron (เหล็ก 9) (300฿/วัน)
+          </label>
+
+           <label>
+            <input type="checkbox" class="item-checkbox" value="10Pitching Wedge" />
+            <span></span>Pitching Wedge (พิตชิ่งเวดจ์) (300฿/วัน)
+          </label>
+
+           <label>
+            <input type="checkbox" class="item-checkbox" value="11Gap Wedge" />
+            <span></span>Gap Wedge (แซนด์เวดจ์) (300฿/วัน)
+          </label>
+
+           <label>
+            <input type="checkbox" class="item-checkbox" value="12Lob Wedge" />
+            <span></span>Lob Wedge (ลอบเวดจ์) (300฿/วัน)
+          </label>
+
+           <label>
+            <input type="checkbox" class="item-checkbox" value="13Lob Wedge" />
+            <span></span>Lob Wedge (ลอบเวดจ์) (300฿/วัน)
+          </label>
+
+        </div>
+      </div>
+
+      <div class="field half">
+        <label for="start_date">วันที่เริ่มเช่า</label>
+        <input type="date" name="start_date" id="start_date" required />
+      </div>
+
+      <div class="field half">
+        <label for="start_time">เวลาเริ่มเช่า</label>
+        <input type="time" name="start_time" id="start_time" required />
+      </div>
+
+      <div class="field half">
+        <label for="hours">จำนวนวัน (1–30)</label>
+        <input type="number" name="hours" id="hours" min="1" max="30" required />
+      </div>
+
+      <div class="field half">
+        <label for="total_price">ราคารวม (บาท)</label>
+        <input type="text" id="total_price" readonly />
+        <input type="hidden" id="total_price_num" />
+        <input type="hidden" id="hour_unique_amount" />
+        <input type="hidden" id="hour_payment_ref" />
+        <input type="hidden" id="hour_status" value="pending" />
+        <input type="hidden" id="hour_expires_at" />
+      </div>
+
+      <div class="field">
+        <label for="hour_message">สถานทีนัดหมาย (หมายเหตุเพิ่มเติม)</label>
+        <textarea name="message" id="hour_message" rows="4"></textarea>
+      </div>
+    </div>
+
+    <ul class="actions">
+      <li><input type="submit" value="ยืนยันการเช่า" class="primary" /></li>
+      <li><input type="reset" value="ล้างข้อมูล" /></li>
+    </ul>
+
+
+  </form>
+
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll(".item-checkbox");
+    const hoursInput = document.getElementById("hours");
+    const totalPriceInput = document.getElementById("total_price");
+    const totalPriceHidden = document.getElementById("total_price_num");
+
+    function calculateTotal() {
+      const selectedItems = document.querySelectorAll(".item-checkbox:checked").length;
+      const hours = parseFloat(hoursInput.value) || 0;
+      const pricePerHour = 30;
+
+      const total = selectedItems * hours * pricePerHour;
+
+      totalPriceInput.value = total.toLocaleString() + " บาท";
+      totalPriceHidden.value = total;
+    }
+
+    // ทุกครั้งที่มีการเปลี่ยน checkbox หรือ ชั่วโมง ให้คำนวณใหม่
+    checkboxes.forEach(cb => cb.addEventListener("change", calculateTotal));
+    hoursInput.addEventListener("input", calculateTotal);
+  });
+</script>
+
+</article>
+
+						
+
+						
+
+
+
 					<article id="day">
     <h2 class="major">DAY รายวัน</h2>
     <form method="post" action="insert.php">
@@ -567,4 +733,5 @@ document.getElementById("hour_form").addEventListener("submit", async function (
 
 	</body>
 </html>
+
 
