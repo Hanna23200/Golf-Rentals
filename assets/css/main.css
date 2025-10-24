@@ -1705,7 +1705,7 @@ input, select, textarea {
   position: relative;
 }
 
-/* ติ๊กถูก */
+/* ติ๊กถูก รายชั่วโมง*/
 .item-checkbox:checked + span::after {
   content: "";
   position: absolute;
@@ -1718,6 +1718,50 @@ input, select, textarea {
   transform: rotate(45deg);
 }
 
+
+/* รายวัน */
+.item-checkbox-day + span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ff6f61;
+  border-radius: 4px;
+  position: relative;
+  margin-right: 5px;
+}
+.item-checkbox-day:checked + span::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 6px;
+  height: 12px;
+  border: solid #ff6f61;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* รายสัปดาห์ */
+.item-checkbox-week + span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ff6f61; /* ใช้สีต่างออกไป */
+  border-radius: 4px;
+  position: relative;
+  margin-right: 5px;
+}
+.item-checkbox-week:checked + span::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 6px;
+  height: 12px;
+  border: solid #4CAF50;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
 
 #wrapper, #bg {
   pointer-events: auto !important; /* อย่าปิดการคลิกทั้งหน้า */
