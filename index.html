@@ -529,7 +529,7 @@
 
           <label>
             <input type="checkbox" class="item-checkbox-week" value="7:7-Iron" />
-            <span></span> 7-Iron (เหล็ก 7) (1000฿/สัปดาห์)
+            <span></span> 7-Iron (เหล็ก 7) (900฿/สัปดาห์)
           </label>
 
           <label>
@@ -815,23 +815,22 @@ document.getElementById("hour_form").addEventListener("submit", async function (
       expires_at: new Date(Date.now() + 1000 * 60 * 30).toISOString() // หมดอายุใน 30 นาที
     }]);
 
-  // ✅ ตรวจสอบ error
-  if (error) {
-    alert("❌ เกิดข้อผิดพลาด: " + error.message);
-    return;
-  }
+
 
   // ✅ ถ้าไม่มี error → ดำเนินการต่อ
-  alert("✅ บันทึกข้อมูลเรียบร้อย! กำลังไปหน้าชำระเงิน...");
+// แสดงข้อความยืนยัน
+alert("✅ บันทึกข้อมูลเรียบร้อย! กำลังไปหน้าชำระเงิน...");
 
-  // ล้างฟอร์ม
-  document.getElementById("hour_form").reset();
-  document.getElementById("total_price").value = "";
+// ✅ เปิดหน้าชำระเงิน PromptPay ทันที หลัง alert
+const phoneNumber = "0927563495"; // หมายเลขพร้อมเพย์ของร้าน
+const link = `https://promptpay.io/${phoneNumber}/${unique_amount}`;
 
-  // ✅ เปิดหน้าชำระเงิน PromptPay
-  const phoneNumber = "0927563495"; // หมายเลขพร้อมเพย์ของร้าน
-  const link = `https://promptpay.io/${phoneNumber}/${unique_amount}`;
-  window.open(link, "_blank");
+// ใช้ setTimeout เพื่อให้ Safari ยอมเปิดลิงก์หลัง alert
+setTimeout(() => {
+  window.location.href = link; 
+  // ✅ เปลี่ยนจาก window.open เป็น window.location.href
+}, 500);
+
 });
 
 </script>
