@@ -817,18 +817,29 @@ document.getElementById("hour_form").addEventListener("submit", async function (
 
 
 
-  // ✅ ถ้าไม่มี error → ดำเนินการต่อ
-// แสดงข้อความยืนยัน
+// ✅ ถ้าไม่มี error → ดำเนินการต่อ
 alert("✅ บันทึกข้อมูลเรียบร้อย! กำลังโหลดหน้า QR ชำระเงิน โปรดรอสักครู่...");
 
-// ✅ เปิดหน้าชำระเงิน PromptPay ทันที หลัง alert
-const phoneNumber = "0927563495"; // หมายเลขพร้อมเพย์ของร้าน
+// ✅ หมายเลข PromptPay และลิงก์
+const phoneNumber = "0927563495";
 const link = `https://promptpay.io/${phoneNumber}/${unique_amount}`;
 
-// ใช้ setTimeout เพื่อให้ Safari ยอมเปิดลิงก์หลัง alert
+// ✅ แทนที่จะเด้งไป เราแสดงหน้า QR พร้อมข้อความร้านแทน
 setTimeout(() => {
-  window.location.href = link; 
-  // ✅ เปลี่ยนจาก window.open เป็น window.location.href
+  document.body.innerHTML = `
+    <div style="text-align:center; margin-top:40px; font-family:sans-serif;">
+      <h2>สแกนเพื่อชำระเงิน</h2>
+      <p>ยอดชำระทั้งหมด: <b>${unique_amount} บาท</b></p>
+      <img src="${link}" style="width:250px; height:250px; margin:20px; border:1px solid #ccc; padding:10px; border-radius:10px;">
+      <p>หลังชำระแล้ว กรุณาแอดไลน์ร้านเพื่อตรวจสอบสลิป</p>
+      <img src="images/1.png" style="width:200px; height:200px; margin:10px;">
+      <p style="margin-top:10px;">หรือเพิ่มไอดี: <b>@ชื่อร้าน</b></p>
+      <button onclick="window.location.href='${link}'" 
+        style="margin-top:20px; padding:10px 20px; border:none; background:#2e8b57; color:white; border-radius:8px; cursor:pointer;">
+        ไปหน้าชำระเงินโดยตรง
+      </button>
+    </div>
+  `;
 }, 500);
 
 });
