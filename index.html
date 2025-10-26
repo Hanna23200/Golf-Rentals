@@ -142,25 +142,23 @@
 
 
 
-	<article id="hour">
-  <h2 class="major">HOUR รายชั่วโมง</h2>
+	<!-- Hour Form -->
+    <article id="hour">
+      <h2 class="major">HOUR รายชั่วโมง</h2>
+      <form id="hour_form">
+        <div class="fields">
+          <div class="field half">
+            <label for="hour_name">ชื่อลูกค้า</label>
+            <input type="text" id="hour_name" required />
+          </div>
+          <div class="field half">
+            <label for="hour_phone">เบอร์โทร</label>
+            <input type="text" id="hour_phone" required />
+          </div>
 
-  
-  <form id="hour_form">
-    <div class="fields">
-      <div class="field half">
-        <label for="hour_name">ชื่อลูกค้า</label>
-        <input type="text" name="name" id="hour_name" required />
-      </div>
-
-      <div class="field half">
-        <label for="hour_phone">เบอร์โทร</label>
-        <input type="text" name="phone" id="hour_phone" required />
-      </div>
-
-      <div class="field">
-        <label>สินค้า (เลือกหลายชิ้นได้)</label>
-        <div class="checkbox-group">
+          <div class="field">
+            <label>สินค้า (เลือกหลายชิ้นได้)</label>
+            <div class="checkbox-group">
       
           <label> 
             <input type="checkbox" class="item-checkbox" value="0Driver" />
@@ -235,96 +233,59 @@
         </div>
       </div>
 
-      <div class="field half">
-        <label for="start_date">วันที่เริ่มเช่า</label>
-        <input type="date" name="start_date" id="start_date" required />
-      </div>
+            <div class="field half">
+            <label for="start_date">วันที่เริ่มเช่า</label>
+            <input type="date" id="start_date" required />
+          </div>
 
-      <div class="field half">
-        <label for="start_time">เวลาเริ่มเช่า</label>
-        <input type="time" name="start_time" id="start_time" required />
-      </div>
+          <div class="field half">
+            <label for="start_time">เวลาเริ่มเช่า</label>
+            <input type="time" id="start_time" required />
+          </div>
 
-      <div class="field half">
-        <label for="hours">จำนวนชั่วโมง (1–24)</label>
-        <input type="number" name="hours" id="hours" min="1" max="24" required />
-      </div>
+          <div class="field half">
+            <label for="hours">จำนวนชั่วโมง (1–24)</label>
+            <input type="number" id="hours" min="1" max="24" required />
+          </div>
 
-      <div class="field half">
-        <label for="total_price">ราคารวม (บาท)</label>
-        <input type="text" id="total_price" readonly />
-        <input type="hidden" id="total_price_num" />
-        <input type="hidden" id="hour_unique_amount" />
-        <input type="hidden" id="hour_payment_ref" />
-        <input type="hidden" id="hour_status" value="pending" />
-        <input type="hidden" id="hour_expires_at" />
-      </div>
+          <div class="field half">
+            <label for="total_price">ราคารวม (บาท)</label>
+            <input type="text" id="total_price" readonly />
+            <input type="hidden" id="total_price_num" />
+          </div>
 
-      <div class="field">
-        <label for="hour_message">สถานทีนัดหมาย (หมายเหตุเพิ่มเติม)</label>
-        <textarea name="message" id="hour_message" rows="4"></textarea>
-      </div>
-    </div>
+          <div class="field">
+            <label for="hour_message">สถานที่นัดหมาย</label>
+            <textarea id="hour_message" rows="4"></textarea>
+          </div>
+        </div>
 
-    <ul class="actions">
-      <li><input type="submit" value="ยืนยันการเช่า" class="primary" /></li>
-      <li><input type="reset" value="ล้างข้อมูล" /></li>
-    </ul>
-
-
-  </form>
-
-
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const checkboxes = document.querySelectorAll(".item-checkbox");
-    const hoursInput = document.getElementById("hours");
-    const totalPriceInput = document.getElementById("total_price");
-    const totalPriceHidden = document.getElementById("total_price_num");
-
-    function calculateTotal() {
-      const selectedItems = document.querySelectorAll(".item-checkbox:checked").length;
-      const hours = parseFloat(hoursInput.value) || 0;
-      const pricePerHour = 30;
-
-      const total = selectedItems * hours * pricePerHour;
-
-      totalPriceInput.value = total.toLocaleString() + " บาท";
-      totalPriceHidden.value = total;
-    }
-
-    // ทุกครั้งที่มีการเปลี่ยน checkbox หรือ ชั่วโมง ให้คำนวณใหม่
-    checkboxes.forEach(cb => cb.addEventListener("change", calculateTotal));
-    hoursInput.addEventListener("input", calculateTotal);
-  });
-</script>
-
-</article>
+        <ul class="actions">
+          <li><input type="submit" value="ยืนยันการเช่า" class="primary" /></li>
+          <li><input type="reset" value="ล้างข้อมูล" /></li>
+        </ul>
+      </form>
+    </article>
 
 
 
 
-
-<article id="day">
-  <h2 class="major">DAY รายวัน</h2>
-
-  <form id="day_form">
-    <div class="fields">
-      <!-- ข้อมูลลูกค้า -->
-      <div class="field half">
-        <label for="day_name">ชื่อลูกค้า</label>
-        <input type="text" name="name" id="day_name" required />
-      </div>
-
-      <div class="field half">
-        <label for="day_phone">เบอร์โทร</label>
-        <input type="text" name="phone" id="day_phone" required />
-      </div>
-
-      <!-- รายการสินค้า -->
-      <div class="field">
-        <label>สินค้า (เลือกหลายชิ้นได้)</label>
-        <div class="checkbox-group-day">
+ <!-- Day Form -->
+    <article id="day">
+      <h2 class="major">DAY รายวัน</h2>
+      <form id="day_form">
+        <div class="fields">
+          <div class="field half">
+            <label for="day_name">ชื่อลูกค้า</label>
+            <input type="text" id="day_name" required />
+          </div>
+          <div class="field half">
+            <label for="day_phone">เบอร์โทร</label>
+            <input type="text" id="day_phone" required />
+          </div>
+          <div class="field">
+            <label>สินค้า (เลือกหลายชิ้นได้)</label>
+            <div class="checkbox-group-day">
 
           <label> 
             <input type="checkbox" class="item-checkbox-day" value="0Driver" />
@@ -399,98 +360,56 @@
         </div>
       </div>
 
-      <!-- วันที่ เวลา -->
       <div class="field half">
-        <label for="day_start_date">วันที่เริ่มเช่า</label>
-        <input type="date" name="start_date" id="day_start_date" required />
-      </div>
+            <label for="day_start_date">วันที่เริ่มเช่า</label>
+            <input type="date" id="day_start_date" required />
+          </div>
+          <div class="field half">
+            <label for="day_start_time">เวลาเริ่มเช่า</label>
+            <input type="time" id="day_start_time" required />
+          </div>
 
-      <div class="field half">
-        <label for="day_start_time">เวลาเริ่มเช่า</label>
-        <input type="time" name="start_time" id="day_start_time" required />
-      </div>
+          <div class="field half">
+            <label for="day_days">จำนวนวัน (1–30)</label>
+            <input type="number" id="day_days" min="1" max="30" required />
+          </div>
 
-      <!-- จำนวนวัน -->
-      <div class="field half">
-        <label for="day_days">จำนวนวัน (1–30)</label>
-        <input type="number" name="days" id="day_days" min="1" max="30" required />
-      </div>
+          <div class="field half">
+            <label for="day_total_price">ราคารวม (บาท)</label>
+            <input type="text" id="day_total_price" readonly />
+            <input type="hidden" id="day_total_price_num" />
+          </div>
 
-      <!-- ราคารวม -->
-      <div class="field half">
-        <label for="day_total_price">ราคารวม (บาท)</label>
-        <input type="text" id="day_total_price" readonly />
-        <input type="hidden" id="day_total_price_num" name="total_price" />
-      </div>
+          <div class="field">
+            <label for="day_message">สถานที่นัดหมาย</label>
+            <textarea id="day_message" rows="4"></textarea>
+          </div>
+        </div>
 
-      <!-- สถานที่นัดหมาย -->
-      <div class="field">
-        <label for="day_message">สถานที่นัดหมาย</label>
-        <textarea name="message" id="day_message" rows="4"></textarea>
-      </div>
-    </div>
-
-    <ul class="actions">
-      <li><input type="submit" value="ยืนยันการเช่า" class="primary" /></li>
-      <li><input type="reset" value="ล้างข้อมูล" /></li>
-    </ul>
-  </form>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const dayForm = document.getElementById("day_form");
-    const checkboxes = dayForm.querySelectorAll(".item-checkbox-day");
-    const daysInput = document.getElementById("day_days");
-    const totalPriceInput = document.getElementById("day_total_price");
-    const totalPriceHidden = document.getElementById("day_total_price_num");
-
-    function calculateTotalDay() {
-      const selectedItems = dayForm.querySelectorAll(".item-checkbox-day:checked").length;
-      const days = parseFloat(daysInput.value) || 0;
-      const pricePerDay = 300;
-      const total = selectedItems * days * pricePerDay;
-
-      if (selectedItems > 0 && days > 0) {
-        totalPriceInput.value = total.toLocaleString() + " บาท";
-        totalPriceHidden.value = total;
-      } else {
-        totalPriceInput.value = "0 บาท";
-        totalPriceHidden.value = 0;
-      }
-    }
-
-    checkboxes.forEach(cb => cb.addEventListener("change", calculateTotalDay));
-    daysInput.addEventListener("input", calculateTotalDay);
-  });
-  </script>
-</article>
+        <ul class="actions">
+          <li><input type="submit" value="ยืนยันการเช่า" class="primary" /></li>
+          <li><input type="reset" value="ล้างข้อมูล" /></li>
+        </ul>
+      </form>
+    </article>
 
 
-						
-
-						
-
-
-
-
-<article id="week">
-  <h2 class="major">WEEK รายสัปดาห์</h2>
-
-  <form id="week_form">
-    <div class="fields">
-      <div class="field half">
-        <label for="week_name">ชื่อลูกค้า</label>
-        <input type="text" name="name" id="week_name" required />
-      </div>
-
-      <div class="field half">
-        <label for="week_phone">เบอร์โทร</label>
-        <input type="text" name="phone" id="week_phone" required />
-      </div>
-
-      <div class="field">
-        <label>สินค้า (เลือกหลายชิ้นได้)</label>
-        <div class="checkbox-group-week">
+ <!-- Week Form -->
+    <article id="week">
+      <h2 class="major">WEEK รายสัปดาห์</h2>
+      <form id="week_form">
+        <div class="fields">
+          <div class="field half">
+            <label for="week_name">ชื่อลูกค้า</label>
+            <input type="text" id="week_name" required />
+          </div>
+          <div class="field half">
+            <label for="week_phone">เบอร์โทร</label>
+            <input type="text" id="week_phone" required />
+          </div>
+          <div class="field">
+            <label>สินค้า (เลือกหลายชิ้นได้)</label>
+            <div class="checkbox-group-week">
 
           <label>
             <input type="checkbox" class="item-checkbox-week" value="0Driver" />
@@ -565,72 +484,38 @@
         </div>
       </div>
 
-      <div class="field half">
-        <label for="week_start_date">วันที่เริ่มเช่า</label>
-        <input type="date" name="start_date" id="week_start_date" required />
-      </div>
+     <div class="field half">
+            <label for="week_start_date">วันที่เริ่มเช่า</label>
+            <input type="date" id="week_start_date" required />
+          </div>
+          <div class="field half">
+            <label for="week_start_time">เวลาเริ่มเช่า</label>
+            <input type="time" id="week_start_time" required />
+          </div>
 
-      <div class="field half">
-        <label for="week_start_time">เวลาเริ่มเช่า</label>
-        <input type="time" name="start_time" id="week_start_time" required />
-      </div>
+          <div class="field half">
+            <label for="week_weeks">จำนวนสัปดาห์ (1–12)</label>
+            <input type="number" id="week_weeks" min="1" max="12" required />
+          </div>
 
-      <div class="field half">
-        <label for="week_weeks">จำนวนสัปดาห์ (1–12)</label>
-        <input type="number" name="weeks" id="week_weeks" min="1" max="12" required />
-      </div>
+          <div class="field half">
+            <label for="week_total_price">ราคารวม (บาท)</label>
+            <input type="text" id="week_total_price" readonly />
+            <input type="hidden" id="week_total_price_num" />
+          </div>
 
-      <div class="field half">
-        <label for="week_total_price">ราคารวม (บาท)</label>
-        <input type="text" id="week_total_price" readonly />
-        <input type="hidden" id="week_total_price_num" />
-        <input type="hidden" id="week_unique_amount" />
-        <input type="hidden" id="week_payment_ref" />
-        <input type="hidden" id="week_status" value="pending" />
-        <input type="hidden" id="week_expires_at" />
-      </div>
+          <div class="field">
+            <label for="week_message">สถานที่นัดหมาย</label>
+            <textarea id="week_message" rows="4"></textarea>
+          </div>
+        </div>
 
-      <div class="field">
-        <label for="week_message">สถานที่นัดหมาย (หมายเหตุเพิ่มเติม)</label>
-        <textarea name="message" id="week_message" rows="4"></textarea>
-      </div>
-    </div>
-
-    <ul class="actions">
-      <li><input type="submit" value="ยืนยันการเช่า" class="primary" /></li>
-      <li><input type="reset" value="ล้างข้อมูล" /></li>
-    </ul>
-  </form>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const weekForm = document.getElementById("week_form");
-    const checkboxes = weekForm.querySelectorAll(".item-checkbox-week");
-    const weeksInput = document.getElementById("week_weeks");
-    const totalPriceInput = document.getElementById("week_total_price");
-    const totalPriceHidden = document.getElementById("week_total_price_num");
-
-    function calculateTotalWeek() {
-      const selectedItems = weekForm.querySelectorAll(".item-checkbox-week:checked").length;
-      const weeks = parseFloat(weeksInput.value) || 0;
-      const pricePerWeek = 900; // ราคา/สัปดาห์
-
-      const total = selectedItems * weeks * pricePerWeek;
-
-      if (selectedItems > 0 && weeks > 0) {
-        totalPriceInput.value = total.toLocaleString() + " บาท";
-        totalPriceHidden.value = total;
-      } else {
-        totalPriceInput.value = "0 บาท";
-        totalPriceHidden.value = 0;
-      }
-    }
-
-    checkboxes.forEach(cb => cb.addEventListener("change", calculateTotalWeek));
-    weeksInput.addEventListener("input", calculateTotalWeek);
-  });
-  </script>
-</article>
+        <ul class="actions">
+          <li><input type="submit" value="ยืนยันการเช่า" class="primary" /></li>
+          <li><input type="reset" value="ล้างข้อมูล" /></li>
+        </ul>
+      </form>
+    </article>
 
 
 
@@ -724,150 +609,186 @@
             <li><input type="submit" value="Send Message" class="primary" /></li>
             <li><input type="reset" value="Reset" /></li>
         </ul>
+        
     </form>
+
+<ul class="icons">
+  <li>
+    <a href="https://www.facebook.com/yourpage" class="icon brands fa-facebook-f" target="_blank">
+      <span class="label">Facebook</span>
+    </a>
+  </li>
+
+  <!-- ✅ ปุ่ม LINE -->
+  <li>
+    <a href="https://line.me/R/ti/p/@597kvwwz" class="icon brands fa-line" target="_blank">
+      <span class="label">Line</span>
+    </a>
+  </li>
+</ul>
+
 </article>
 
 
 
+</div> <!-- /main -->
+
+  <footer id="footer">
+    <p class="copyright">&copy; Phakwalan</p>
+  </footer>
+
+</div> <!-- /wrapper -->
+
+<div id="bg"></div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
 
 
-
-
+<!-- Supabase -->
 <script type="module">
-  import { createClient } from 'https://esm.sh/@supabase/supabase-js'
+import { createClient } from 'https://esm.sh/@supabase/supabase-js'
+const SUPABASE_URL = 'https://mahiawlcywajnqthyscw.supabase.co'
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1haGlhd2xjeXdham5xdGh5c2N3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NjIyMTAsImV4cCI6MjA3NjAzODIxMH0._UzYBsr2GZRxqaJLit7vQuEuwR9-M3XYtDYjCygkuio'
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
-  // 👇 ใช้ค่าของเธอเอง
-  const SUPABASE_URL = 'https://mahiawlcywajnqthyscw.supabase.co'
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1haGlhd2xjeXdham5xdGh5c2N3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NjIyMTAsImV4cCI6MjA3NjAzODIxMH0._UzYBsr2GZRxqaJLit7vQuEuwR9-M3XYtDYjCygkuio'
+// ====== ฟังก์ชันคำนวณราคา ======
+function setupCalculation(checkboxClass, inputNumId, inputPriceId, pricePerUnit) {
+  const checkboxes = document.querySelectorAll(checkboxClass);
+  const numInput = document.getElementById(inputNumId);
+  const priceInput = document.getElementById(inputPriceId);
+  const hiddenInput = document.getElementById(inputPriceId + '_num');
 
-  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+  function calculate() {
+    const selected = document.querySelectorAll(checkboxClass + ':checked').length;
+    const qty = parseInt(numInput.value) || 0;
+    const total = selected * qty * pricePerUnit;
 
-  // ฟังก์ชันส่งข้อมูลเข้า Supabase
-  async function handleFormSubmit(event) {
-    event.preventDefault()
-
-    const form = event.target
-    const name = form.name.value
-    const email = form.email.value
-    const phone = form.phone.value
-    const message = form.message.value
-
-    const { error } = await supabase
-      .from('go01') // 👈 ชื่อตารางที่เธอต้องสร้างใน Supabase
-      .insert([{ name, email, phone, message }])
-
-    if (error) {
-      alert('❌ บันทึกข้อมูลไม่สำเร็จ: ' + error.message)
-    } else {
-      alert('✅ ส่งข้อมูลเรียบร้อยแล้ว!')
-      form.reset()
-    }
+    priceInput.value = total > 0 ? total.toLocaleString() + ' บาท' : '0 บาท';
+    if (hiddenInput) hiddenInput.value = total;
   }
 
-  // ผูกฟังก์ชันกับทุกฟอร์มในหน้า
-  document.querySelectorAll('form:not(#hour_form)').forEach(form => {
-    form.addEventListener('submit', handleFormSubmit)
-  })
+  checkboxes.forEach(cb => cb.addEventListener('change', calculate));
+  numInput.addEventListener('input', calculate);
 
+  calculate(); // เรียกครั้งแรกเพื่อให้ค่าเริ่มต้นถูกต้อง
+}
 
-//  ฟังก์ชันบันทึกข้อมูล rentals_hour
-  //  ฟังก์ชันบันทึกข้อมูล rentals_hour
-document.getElementById("hour_form").addEventListener("submit", async function (e) {
-  e.preventDefault();
+// ====== ตั้งค่าการคำนวณ ======
+setupCalculation('.item-checkbox', 'hours', 'total_price', 30);             // รายชั่วโมง
+setupCalculation('.item-checkbox-day', 'day_days', 'day_total_price', 300); // รายวัน
+setupCalculation('.item-checkbox-week', 'week_weeks', 'week_total_price', 900); // รายสัปดาห์
 
-  // ดึงค่าจากฟอร์ม
-  const name = document.getElementById("hour_name").value;
-  const phone = document.getElementById("hour_phone").value;
-  const start_date = document.getElementById("start_date").value;
-  const start_time = document.getElementById("start_time").value;
-  const hours = parseInt(document.getElementById("hours").value);
-  const total_price = parseInt(document.getElementById("total_price_num").value);
-  const message = document.getElementById("hour_message").value;
+// ====== ฟังก์ชัน submit form ======
+async function handleFormSubmit(formId, tableName, dataMapper, isQR=false) {
+  const form = document.getElementById(formId);
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const data = dataMapper();
 
-  // ดึงค่าจาก checkbox ที่เลือก
-  const selectedItems = Array.from(
-    document.querySelectorAll(".item-checkbox:checked")
-  ).map(cb => cb.value);
+    if (!data.total_price || data.total_price === 0) {
+      alert('❌ กรุณาเลือกสินค้าและจำนวนก่อนชำระเงิน');
+      return;
+    }
 
-  // ✅ แปลง array ให้เป็นข้อความ (เพราะ column items เป็น text)
-  const items = selectedItems.join(", ");
+    const { error } = await supabase.from(tableName).insert([data]);
+    if (error) { alert('❌ บันทึกข้อมูลไม่สำเร็จ: ' + error.message); return; }
 
-  // ✅ สร้าง unique_amount (ยอดเฉพาะเพื่อใช้ชำระเงิน)
-  // สามารถเพิ่มเลขย่อยเล็กน้อยเพื่อให้ไม่ซ้ำกันได้
-  const unique_amount = (total_price + Number(Math.random().toFixed(2))).toFixed(2);
+    if (isQR) {
+      const link = `https://promptpay.io/0927563495/${data.unique_amount}`;
 
+      document.body.innerHTML = `
+        <div style="text-align:center; margin-top:40px; font-family:sans-serif;">
+          <h2>สแกนเพื่อชำระเงิน</h2>
+          <p>ยอดชำระทั้งหมด: <b>${data.unique_amount} บาท</b></p>
+          <img src="${link}" style="width:250px;height:250px;margin:20px;border:1px solid #ccc;padding:10px;border-radius:10px;">
+          <p>หลังชำระแล้ว กรุณาแอดไลน์ร้านเพื่อตรวจสอบสลิป</p>
+          <p> <img src="images/1.png"></p>
+          <p>@597kvwwz</p>
+          <p>ขอบพระคุณลูกค้า ที่ใช้บริการกับทางเราค่ะ/ครับ</p>
+        </div>`;
+    } else {
+      alert('✅ ส่งข้อมูลเรียบร้อยแล้ว!');
+      form.reset();
+    }
+  });
+}
 
-  // ✅ บันทึกลง Supabase
-  const { data, error } = await supabase
-    .from("rentals_hour")
-    .insert([{
-      name,
-      phone,
-      items,
-      start_date,
-      start_time,
-      hours,
-      total_price,
-      unique_amount,
-      message,
-      payment_ref: null, // ✅ เพิ่มให้ตรงกับ column ในฐานข้อมูล
-      status: "pending",
-      expires_at: new Date(Date.now() + 1000 * 60 * 30).toISOString() // หมดอายุใน 30 นาที
-    }]);
+// ====== Contact Form ======
+handleFormSubmit('contact_form', 'go01', () => ({
+  name: document.getElementById('name').value,
+  email: document.getElementById('email').value,
+  phone: document.getElementById('phone').value,
+  message: document.getElementById('message').value
+}));
 
+// ====== Hour Form ======
+handleFormSubmit('hour_form', 'rentals_hour', () => {
+  const total_price = parseFloat(document.getElementById('total_price_num').value) || 0;
+  const unique_amount = (total_price + Math.random()).toFixed(2);
+  return {
+    name: document.getElementById('hour_name').value,
+    phone: document.getElementById('hour_phone').value,
+    items: Array.from(document.querySelectorAll('.item-checkbox:checked')).map(cb => cb.value).join(', '),
+    start_date: document.getElementById('start_date').value,
+    start_time: document.getElementById('start_time').value,
+    hours: parseInt(document.getElementById('hours').value),
+    total_price, 
+    unique_amount,
+    message: document.getElementById('hour_message').value,
+    payment_ref: null, 
+    status: "pending",
+    expires_at: new Date(Date.now() + 30*60*1000).toISOString()
+  }
+}, true);
 
+// ====== Day Form ======
+handleFormSubmit('day_form', 'rentals_day', () => {
+  const total_price = parseFloat(document.getElementById('day_total_price_num').value) || 0;
+  const unique_amount = (total_price + Math.random()).toFixed(2);
+  return {
+    name: document.getElementById('day_name').value,
+    phone: document.getElementById('day_phone').value,
+    items: Array.from(document.querySelectorAll('.item-checkbox-day:checked')).map(cb => cb.value).join(', '),
+    start_date: document.getElementById('day_start_date').value,
+    start_time: document.getElementById('day_start_time').value,
+    days: parseInt(document.getElementById('day_days').value),
+    total_price, 
+    unique_amount,
+    message: document.getElementById('day_message').value,
+    payment_ref: null, 
+    status: "pending",
+    expires_at: new Date(Date.now() + 24*60*60*1000).toISOString()
+  }
+}, true);
 
-// ✅ ถ้าไม่มี error → ดำเนินการต่อ
-alert("✅ บันทึกข้อมูลเรียบร้อย! กำลังโหลดหน้า QR ชำระเงิน โปรดรอสักครู่...");
+// ====== Week Form ======
+handleFormSubmit('week_form', 'rentals_week', () => {
+  const total_price = parseFloat(document.getElementById('week_total_price_num').value) || 0;
+  const unique_amount = (total_price + Math.random()).toFixed(2);
+  return {
+    name: document.getElementById('week_name').value,
+    phone: document.getElementById('week_phone').value,
+    items: Array.from(document.querySelectorAll('.item-checkbox-week:checked')).map(cb => cb.value).join(', '),
+    start_date: document.getElementById('week_start_date').value,
+    start_time: document.getElementById('week_start_time').value,
+    weeks: parseInt(document.getElementById('week_weeks').value),
+    total_price, 
+    unique_amount,
+    message: document.getElementById('week_message').value,
+    payment_ref: null, 
+    status: "pending",
+    expires_at: new Date(Date.now() + 7*24*60*60*1000).toISOString()
+  }
+}, true);
 
-// ✅ หมายเลข PromptPay และลิงก์
-const phoneNumber = "0927563495";
-const link = `https://promptpay.io/${phoneNumber}/${unique_amount}`;
-
-// ✅ แทนที่จะเด้งไป เราแสดงหน้า QR พร้อมข้อความร้านแทน
-setTimeout(() => {
-  document.body.innerHTML = `
-    <div style="text-align:center; margin-top:40px; font-family:sans-serif;">
-      <h2>สแกนเพื่อชำระเงิน</h2>
-      <p>ยอดชำระทั้งหมด: <b>${unique_amount} บาท</b></p>
-      <img src="${link}" style="width:250px; height:250px; margin:20px; border:1px solid #ccc; padding:10px; border-radius:10px;">
-      <p>หลังชำระแล้ว กรุณาแอดไลน์ร้านเพื่อตรวจสอบสลิป</p>
-      <img src="images/1.png" style="width:200px; height:200px; margin:10px;">
-      <p style="margin-top:10px;">หรือเพิ่มไอดี: <b>@ชื่อร้าน</b></p>
-      <button onclick="window.location.href='${link}'" 
-        style="margin-top:20px; padding:10px 20px; border:none; background:#2e8b57; color:white; border-radius:8px; cursor:pointer;">
-        ไปหน้าชำระเงินโดยตรง
-      </button>
-    </div>
-  `;
-}, 500);
-
-});
 
 </script>
 
-
-
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<p class="copyright">&copy; Phakwalan <a href="https://html5up.net"></a>.</p>
-					</footer>
-
-			</div>
-
-		<!-- BG -->
-			<div id="bg"></div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+</body>
 </html>
 
 
