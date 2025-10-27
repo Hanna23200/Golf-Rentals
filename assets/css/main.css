@@ -1658,17 +1658,17 @@ input, select, textarea {
 
 .rent-btn {
   margin-top: 10px;
-  background-color: #4ea6f8;
+  background-color: #000000;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 5px 20px;
+  border-radius: 15px;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .rent-btn:hover {
-  background-color: #3980dd;
+  background-color: #0c0430;
 }
 
 
@@ -1762,6 +1762,8 @@ input, select, textarea {
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+
+
 
 #wrapper, #bg {
   pointer-events: auto !important; /* อย่าปิดการคลิกทั้งหน้า */
