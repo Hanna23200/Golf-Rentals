@@ -7,6 +7,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+<style>
+      /* เพิ่มสไตล์สำหรับ payment article ให้เข้ากับหน้าอื่น */
+      #payment { display: none; }
+      #payment .image.main img { max-width: 100%; border-radius: 6px; }
+      #payment .payment-info { margin: 16px 0; text-align: left; }
+      #payment .payment-info li { margin: 8px 0; }
+      #payment .qr-wrap { text-align: center; margin-top: 14px; }
+      #payment .button { display:inline-block; padding:10px 18px; background:#008cff; color:#fff; border-radius:8px; text-decoration:none; cursor:pointer; }
+      /* (ไม่ไปกระทบ CSS เดิม) */
+		</style>
+
 	</head>
 	<body class="is-preload">
 
@@ -628,6 +640,36 @@
 
 
 
+
+
+ <article id="payment">
+        <h2 class="major">Payment การชำระเงิน</h2>
+        <span class="image main"><img src="images/B01.png" alt="Payment banner" /></span>
+
+        <p>กรุณาตรวจสอบข้อมูลการเช่าก่อนชำระเงิน</p>
+
+        <ul class="payment-info">
+          <p><b>ชื่อผู้เช่า:</b> <span id="pay_name">-</span></p>
+          <p><b>เบอร์โทร:</b> <span id="pay_phone">-</span></p>
+          <p><b>รายการที่เช่า:</b> <span id="pay_items">-</span></p>
+          <p><b>ยอดที่ต้องชำระ:</b> <span id="pay_amount">0.00</span> บาท</p>
+        </ul>
+
+        <div class="qr-wrap">
+          <img id="pay_qr" src="" alt="PromptPay QR" style="width:260px;border:1px solid #ccc;padding:10px;border-radius:12px;">
+          <p style="margin-top:10px;">หลังชำระแล้ว กรุณาแอดไลน์ร้านเพื่อตรวจสอบสลิป</p>
+          <img src="images/X01.jpg" alt="Line QR" style="width:220px;margin:10px auto; display:block;">
+          <p>@597kvwwz</p>
+        </div>
+
+        
+      </article>
+
+
+
+
+
+
 </div> <!-- /main -->
 
   <footer id="footer">
@@ -652,7 +694,6 @@ const SUPABASE_URL = 'https://mahiawlcywajnqthyscw.supabase.co'
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1haGlhd2xjeXdham5xdGh5c2N3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NjIyMTAsImV4cCI6MjA3NjAzODIxMH0._UzYBsr2GZRxqaJLit7vQuEuwR9-M3XYtDYjCygkuio'
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
-// ====== ฟังก์ชันคำนวณราคา ======
 function setupCalculation(checkboxClass, inputNumId, inputPriceId, pricePerUnit) {
   const checkboxes = document.querySelectorAll(checkboxClass);
   const numInput = document.getElementById(inputNumId);
@@ -669,7 +710,7 @@ function setupCalculation(checkboxClass, inputNumId, inputPriceId, pricePerUnit)
   }
 
   checkboxes.forEach(cb => cb.addEventListener('change', calculate));
-  numInput.addEventListener('input', calculate);
+  if (numInput) numInput.addEventListener('input', calculate);
 
   calculate(); // เรียกครั้งแรกเพื่อให้ค่าเริ่มต้นถูกต้อง
 }
@@ -679,7 +720,7 @@ setupCalculation('.item-checkbox', 'hours', 'total_price', 50);             // �
 setupCalculation('.item-checkbox-day', 'day_days', 'day_total_price', 120); // รายวัน
 setupCalculation('.item-checkbox-week', 'week_weeks', 'week_total_price',350); // รายสัปดาห์
 
-// ====== ฟังก์ชัน submit form ======
+// ====== ฟังก์ชัน submit form (แก้ให้แสดง payment article แทนการเขียนทับ body) ======
 async function handleFormSubmit(formId, tableName, dataMapper, isQR=false) {
   const form = document.getElementById(formId);
   form.addEventListener('submit', async e => {
@@ -691,22 +732,13 @@ async function handleFormSubmit(formId, tableName, dataMapper, isQR=false) {
       return;
     }
 
+    // บันทึกข้อมูลลง Supabase (เหมือนเดิม)
     const { error } = await supabase.from(tableName).insert([data]);
     if (error) { alert('❌ บันทึกข้อมูลไม่สำเร็จ: ' + error.message); return; }
 
+    // ถ้าควรแสดง QR → แสดง payment article แทนการ replace body
     if (isQR) {
-      const link = `https://promptpay.io/0927563495/${data.unique_amount}`;
-
-      document.body.innerHTML = `
-        <div style="text-align:center; margin-top:40px; font-family:sans-serif;">
-          <h2>สแกนเพื่อชำระเงิน</h2>
-          <p>ยอดชำระทั้งหมด: <b>${data.unique_amount} บาท</b></p>
-          <img src="${link}" style="width:250px;height:250px;margin:20px;border:1px solid #ccc;padding:10px;border-radius:10px;">
-          <p>หลังชำระแล้ว กรุณาแอดไลน์ร้านเพื่อตรวจสอบสลิป</p>
-          <p> <img src="images/X01.jpg"></p>
-          <p>@597kvwwz</p>
-          <p>ขอบพระคุณลูกค้า ที่ใช้บริการกับทางเราค่ะ/ครับ</p>
-        </div>`;
+      showPaymentArticle(data);
     } else {
       alert('✅ ส่งข้อมูลเรียบร้อยแล้ว!');
       form.reset();
@@ -720,7 +752,7 @@ handleFormSubmit('contact_form', 'go01', () => ({
   email: document.getElementById('email').value,
   phone: document.getElementById('phone').value,
   message: document.getElementById('message').value
-}));
+}), false);
 
 // ====== Hour Form ======
 handleFormSubmit('hour_form', 'rentals_hour', () => {
@@ -783,7 +815,48 @@ handleFormSubmit('week_form', 'rentals_week', () => {
 }, true);
 
 
+// ====== ฟังก์ชันแสดง payment article (ใช้สำหรับทั้ง 3 ฟอร์ม) ======
+function showPaymentArticle(data) {
+  // data คาดว่าเป็น object ที่มี fields เช่น name, phone, items, total_price, unique_amount
+  const payName = data.name || '-';
+  const payPhone = data.phone || '-';
+  const payItems = data.items || '-';
+  const payAmount = data.unique_amount || (data.total_price ? (data.total_price + Math.random()).toFixed(2) : '0.00');
+
+  // อัปเดต DOM ของ payment article
+  document.getElementById('pay_name').textContent = payName;
+  document.getElementById('pay_phone').textContent = payPhone;
+  document.getElementById('pay_items').textContent = payItems;
+  document.getElementById('pay_amount').textContent = parseFloat(payAmount).toFixed(2);
+
+  // สร้างลิงก์ PromptPay (หมายเลขร้านของเธอ)
+  const promptpayPhone = '0927563495'; // <-- ถ้าต้องเปลี่ยน ให้แก้ตรงนี้
+  const qrLink = `https://promptpay.io/${promptpayPhone}/${parseFloat(payAmount).toFixed(2)}`;
+  document.getElementById('pay_qr').src = qrLink;
+
+  // ซ่อน article ทั้งหมด แล้วแสดง payment article
+  document.querySelectorAll('#main article').forEach(a => a.style.display = 'none');
+  document.getElementById('payment').style.display = 'block';
+  window.location.hash = '#payment';
+  window.scrollTo(0, 0);
+}
+
+// ฟังก์ชันกลับไปหน้าเดิม (แสดง intro เป็นหน้าเริ่มต้น)
+function closePaymentArticle() {
+  document.getElementById('payment').style.display = 'none';
+  // แสดง intro (หรือจะแสดง work/page ที่ต้องการ)
+  document.querySelectorAll('#main article').forEach(a => a.style.display = 'block');
+  // เลื่อนกลับไปบนสุด
+  window.location.hash = '#intro';
+  window.scrollTo(0, 0);
+}
 </script>
+
+
+
+
+
+
 
 </body>
 </html>
