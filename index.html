@@ -53,6 +53,8 @@
 								<!--<li><a href="#day">DAY</a></li>-->
 								<!--<li><a href="#week">Week</a></li>-->
 								<!--<li><a href="#done">Done</a></li>-->
+                <!--<li><a href="#set">SET</a></li>-->
+                
 							</ul>
 						</nav>
 
@@ -140,7 +142,16 @@
 								
 								<button class="rent-btn" onclick="window.location.href='#week'">เช่าสินค้า</button>
 						</div>
-							</div>
+
+
+								<div class="rental-item">
+  						<img src="images/Q4.png" alt="กอล์ฟเซ็ต">
+  						
+  						<button class="rent-btn" onclick="window.location.href='#set'">เช่าสินค้า</button>
+						</div>
+
+
+      </div>
 							</article>
 
 							<script>
@@ -167,9 +178,16 @@
             <label for="hour_phone">เบอร์โทร</label>
             <input type="text" id="hour_phone" required />
           </div>
-
-          <div class="field">
-            <label>สินค้า (เลือกหลายชิ้นได้)</label>
+          <div class="field half">
+            <label for="hour_sex">ระบุบเพศ</label>
+            <input type="text" id="hour_sex" required />
+          </div>
+          <div class="field half">
+            <label for="hour_height">ส่วนสูง</label>
+            <input type="text" id="hour_height" required />
+          </div>
+            <div class="field">
+            <label>บริการ</label>
             <div class="checkbox-group">
       
           <label> 
@@ -267,7 +285,7 @@
           </div>
 
           <div class="field">
-            <label for="hour_message">สถานที่นัดหมาย</label>
+            <label for="hour_message">สถานที่นัดหมาย (หมายเหตุ)</label>
             <textarea id="hour_message" rows="4"></textarea>
           </div>
         </div>
@@ -291,12 +309,24 @@
             <label for="day_name">ชื่อลูกค้า</label>
             <input type="text" id="day_name" required />
           </div>
+
           <div class="field half">
             <label for="day_phone">เบอร์โทร</label>
             <input type="text" id="day_phone" required />
+            </div>
+
+         <div class="field half">
+            <label for="day_sex">ระบุบเพศ</label>
+            <input type="text" id="day_sex" required />
           </div>
-          <div class="field">
-            <label>สินค้า (เลือกหลายชิ้นได้)</label>
+
+          <div class="field half">
+            <label for="day_height">ส่วนสูง</label>
+            <input type="text" id="day_height" required />
+          </div>
+          
+            <div class="field">
+            <label>บริการ</label>
             <div class="checkbox-group-day">
 
           <label> 
@@ -393,7 +423,7 @@
           </div>
 
           <div class="field">
-            <label for="day_message">สถานที่นัดหมาย</label>
+            <label for="day_message">สถานที่นัดหมาย (หมายเหตุ)</label>
             <textarea id="day_message" rows="4"></textarea>
           </div>
         </div>
@@ -415,12 +445,24 @@
             <label for="week_name">ชื่อลูกค้า</label>
             <input type="text" id="week_name" required />
           </div>
+
           <div class="field half">
             <label for="week_phone">เบอร์โทร</label>
             <input type="text" id="week_phone" required />
           </div>
-          <div class="field">
-            <label>สินค้า (เลือกหลายชิ้นได้)</label>
+
+           <div class="field half">
+            <label for="week_sex">ระบุบเพศ</label>
+            <input type="text" id="week_sex" required />
+          </div>
+
+          <div class="field half">
+            <label for="week_height">ส่วนสูง</label>
+            <input type="text" id="week_height" required />
+          </div>
+
+            <div class="field">
+            <label>บริการ</label>
             <div class="checkbox-group-week">
 
           <label>
@@ -517,7 +559,7 @@
           </div>
 
           <div class="field">
-            <label for="week_message">สถานที่นัดหมาย</label>
+            <label for="week_message">สถานที่นัดหมาย (หมายเหตุ)</label>
             <textarea id="week_message" rows="4"></textarea>
           </div>
         </div>
@@ -530,6 +572,73 @@
     </article>
 
 
+
+
+<!-- Set Form -->
+    <article id="set">
+      <h2 class="major">GOLF SET</h2>
+      <form id="set_form">
+        <div class="fields">
+          <div class="field half">
+            <label for="set_name">ชื่อลูกค้า</label>
+            <input type="text" id="set_name" required />
+          </div>
+          <div class="field half">
+            <label for="set_phone">เบอร์โทร</label>
+            <input type="text" id="set_phone" required />
+          </div>
+          <div class="field half">
+            <label for="set_sex">ระบุบเพศ</label>
+            <input type="text" id="set_sex" required />
+          </div>
+          <div class="field half">
+            <label for="set_height">ส่วนสูง</label>
+            <input type="text" id="set_height" required />
+          </div>
+            <div class="field">
+            <label>บริการ</label>
+            <div class="checkbox-group-set">
+          
+          <label>
+            <input type="checkbox" class="item-checkbox-set" value="เช็ตไม้กอล์ฟ 12 ไม้ (699฿/วัน) พร้อมถุง" />
+            <span></span> เช็ตไม้กอล์ฟ 12 ไม้ (699฿/วัน) พร้อมถุง
+          </label>
+
+        </div>
+      </div>
+
+     <div class="field half">
+            <label for="set_start_date">วันที่เริ่มเช่า</label>
+            <input type="date" id="set_start_date" required />
+          </div>
+          <div class="field half">
+            <label for="set_start_time">เวลาเริ่มเช่า</label>
+            <input type="time" id="set_start_time" required />
+          </div>
+
+          <div class="field half">
+            <label for="set_days">จำนวนวัน (1–7)</label>
+            <input type="number" id="set_days" min="1" max="7" required />
+          </div>
+
+          <div class="field half">
+            <label for="set_total_price">ราคารวม (บาท)</label>
+            <input type="text" id="set_total_price" readonly />
+            <input type="hidden" id="set_total_price_num" />
+          </div>
+
+          <div class="field">
+            <label for="set_message">สถานที่นัดหมาย (หมายเหตุ)</label>
+            <textarea id="set_message" rows="4"></textarea>
+          </div>
+        </div>
+
+        <ul class="actions">
+          <li><input type="submit" value="ยืนยันการเช่า" class="primary" /></li>
+          <li><input type="reset" value="ล้างข้อมูล" /></li>
+        </ul>
+      </form>
+    </article>
 
 
 
@@ -623,20 +732,19 @@
         </ul>
         
     </form>
-								
- <!--
+<!--
 <ul class="icons">
   
 
 
-  ✅ ปุ่ม LINE
+   ปุ่ม LINE 
   <li>
     <a href="https://line.me/R/ti/p/@597kvwwz" class="icon brands fa-line" target="_blank">
       <span class="label">Line</span>
     </a>
   </li>
-</ul> -->
-
+</ul>
+-->
 </article>
 
 
@@ -653,6 +761,7 @@
           <p><b>ชื่อผู้เช่า:</b> <span id="pay_name">-</span></p>
           <p><b>เบอร์โทร:</b> <span id="pay_phone">-</span></p>
           <p><b>รายการที่เช่า:</b> <span id="pay_items">-</span></p>
+          <p><b>สถานที่นัดหมาย (หมายเหตุ):</b> <span id="pay_message">-</span></p>
           <p><b>ยอดที่ต้องชำระ:</b> <span id="pay_amount">0.00</span> บาท</p>
         </ul>
 
@@ -713,15 +822,18 @@ function setupCalculation(checkboxClass, inputNumId, inputPriceId, pricePerUnit)
   checkboxes.forEach(cb => cb.addEventListener('change', calculate));
   if (numInput) numInput.addEventListener('input', calculate);
 
-  calculate(); // เรียกครั้งแรกเพื่อให้ค่าเริ่มต้นถูกต้อง
+  calculate(); 
 }
 
-// ====== ตั้งค่าการคำนวณ ======
-setupCalculation('.item-checkbox', 'hours', 'total_price', 50);             // รายชั่วโมง
-setupCalculation('.item-checkbox-day', 'day_days', 'day_total_price', 120); // รายวัน
-setupCalculation('.item-checkbox-week', 'week_weeks', 'week_total_price',350); // รายสัปดาห์
 
-// ====== ฟังก์ชัน submit form (แก้ให้แสดง payment article แทนการเขียนทับ body) ======
+setupCalculation('.item-checkbox', 'hours', 'total_price', 50);            
+setupCalculation('.item-checkbox-day', 'day_days', 'day_total_price', 120); 
+setupCalculation('.item-checkbox-week', 'week_weeks', 'week_total_price',350);
+setupCalculation('.item-checkbox-set', 'set_days', 'set_total_price', 699);
+
+  
+
+
 async function handleFormSubmit(formId, tableName, dataMapper, isQR=false) {
   const form = document.getElementById(formId);
   form.addEventListener('submit', async e => {
@@ -733,11 +845,11 @@ async function handleFormSubmit(formId, tableName, dataMapper, isQR=false) {
       return;
     }
 
-    // บันทึกข้อมูลลง Supabase (เหมือนเดิม)
+    // บันทึกข้อมูลลง Supabase
     const { error } = await supabase.from(tableName).insert([data]);
     if (error) { alert('❌ บันทึกข้อมูลไม่สำเร็จ: ' + error.message); return; }
 
-    // ถ้าควรแสดง QR → แสดง payment article แทนการ replace body
+    
     if (isQR) {
       showPaymentArticle(data);
     } else {
@@ -747,7 +859,7 @@ async function handleFormSubmit(formId, tableName, dataMapper, isQR=false) {
   });
 }
 
-// ====== Contact Form ======
+//Contact Form
 handleFormSubmit('contact_form', 'go01', () => ({
   name: document.getElementById('name').value,
   email: document.getElementById('email').value,
@@ -755,13 +867,15 @@ handleFormSubmit('contact_form', 'go01', () => ({
   message: document.getElementById('message').value
 }), false);
 
-// ====== Hour Form ======
+//Hour 
 handleFormSubmit('hour_form', 'rentals_hour', () => {
   const total_price = parseFloat(document.getElementById('total_price_num').value) || 0;
   const unique_amount = (total_price + Math.random()).toFixed(2);
   return {
     name: document.getElementById('hour_name').value,
     phone: document.getElementById('hour_phone').value,
+    sex: document.getElementById('hour_sex').value,
+    height: document.getElementById('hour_height').value,
     items: Array.from(document.querySelectorAll('.item-checkbox:checked')).map(cb => cb.value).join(', '),
     start_date: document.getElementById('start_date').value,
     start_time: document.getElementById('start_time').value,
@@ -775,13 +889,15 @@ handleFormSubmit('hour_form', 'rentals_hour', () => {
   }
 }, true);
 
-// ====== Day Form ======
+//Day
 handleFormSubmit('day_form', 'rentals_day', () => {
   const total_price = parseFloat(document.getElementById('day_total_price_num').value) || 0;
   const unique_amount = (total_price + Math.random()).toFixed(2);
   return {
     name: document.getElementById('day_name').value,
     phone: document.getElementById('day_phone').value,
+    sex: document.getElementById('day_sex').value,
+    height: document.getElementById('day_height').value,
     items: Array.from(document.querySelectorAll('.item-checkbox-day:checked')).map(cb => cb.value).join(', '),
     start_date: document.getElementById('day_start_date').value,
     start_time: document.getElementById('day_start_time').value,
@@ -795,13 +911,15 @@ handleFormSubmit('day_form', 'rentals_day', () => {
   }
 }, true);
 
-// ====== Week Form ======
+//Week
 handleFormSubmit('week_form', 'rentals_week', () => {
   const total_price = parseFloat(document.getElementById('week_total_price_num').value) || 0;
   const unique_amount = (total_price + Math.random()).toFixed(2);
   return {
     name: document.getElementById('week_name').value,
     phone: document.getElementById('week_phone').value,
+     sex: document.getElementById('week_sex').value,
+    height: document.getElementById('week_height').value,
     items: Array.from(document.querySelectorAll('.item-checkbox-week:checked')).map(cb => cb.value).join(', '),
     start_date: document.getElementById('week_start_date').value,
     start_time: document.getElementById('week_start_time').value,
@@ -816,18 +934,43 @@ handleFormSubmit('week_form', 'rentals_week', () => {
 }, true);
 
 
+//set
+handleFormSubmit('set_form', 'rentals_set', () => {
+  const total_price = parseFloat(document.getElementById('set_total_price_num').value) || 0;
+  const unique_amount = (total_price + Math.random()).toFixed(2);
+  return {
+    name: document.getElementById('set_name').value,
+    phone: document.getElementById('set_phone').value,
+    sex: document.getElementById('set_sex').value,
+    height: document.getElementById('set_height').value,
+    items: Array.from(document.querySelectorAll('.item-checkbox-set:checked')).map(cb => cb.value).join(', '),
+    start_date: document.getElementById('set_start_date').value,
+    start_time: document.getElementById('set_start_time').value,
+    days: parseInt(document.getElementById('set_days').value),
+    total_price, 
+    unique_amount,
+    message: document.getElementById('set_message').value,
+    payment_ref: null, 
+    status: "pending",
+    expires_at: new Date(Date.now() + 7*24*60*60*1000).toISOString()
+  }
+}, true);
+
+
 // ====== ฟังก์ชันแสดง payment article (ใช้สำหรับทั้ง 3 ฟอร์ม) ======
 function showPaymentArticle(data) {
   // data คาดว่าเป็น object ที่มี fields เช่น name, phone, items, total_price, unique_amount
   const payName = data.name || '-';
   const payPhone = data.phone || '-';
   const payItems = data.items || '-';
+  const payMessage = data.message || '-';
   const payAmount = data.unique_amount || (data.total_price ? (data.total_price + Math.random()).toFixed(2) : '0.00');
 
   // อัปเดต DOM ของ payment article
   document.getElementById('pay_name').textContent = payName;
   document.getElementById('pay_phone').textContent = payPhone;
   document.getElementById('pay_items').textContent = payItems;
+  document.getElementById('pay_message').textContent = payMessage;
   document.getElementById('pay_amount').textContent = parseFloat(payAmount).toFixed(2);
 
   // สร้างลิงก์ PromptPay (หมายเลขร้านของเธอ)
@@ -842,12 +985,12 @@ function showPaymentArticle(data) {
   window.scrollTo(0, 0);
 }
 
-// ฟังก์ชันกลับไปหน้าเดิม (แสดง intro เป็นหน้าเริ่มต้น)
+// ฟังก์ชันกลับไปหน้าเดิม 
 function closePaymentArticle() {
   document.getElementById('payment').style.display = 'none';
-  // แสดง intro (หรือจะแสดง work/page ที่ต้องการ)
+  
   document.querySelectorAll('#main article').forEach(a => a.style.display = 'block');
-  // เลื่อนกลับไปบนสุด
+  
   window.location.hash = '#intro';
   window.scrollTo(0, 0);
 }
@@ -861,7 +1004,6 @@ function closePaymentArticle() {
 
 </body>
 </html>
-
 
 
 
