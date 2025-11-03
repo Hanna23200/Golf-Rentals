@@ -15,8 +15,12 @@
       #payment .payment-info { margin: 16px 0; text-align: left; }
       #payment .payment-info li { margin: 8px 0; }
       #payment .qr-wrap { text-align: center; margin-top: 14px; }
-      #payment .button { display:inline-block; padding:10px 18px; background:#008cff; color:#fff; border-radius:8px; text-decoration:none; cursor:pointer; }
-      /* (ไม่ไปกระทบ CSS เดิม) */
+      #payment .button { display:inline-block; padding:10px 18px; 
+                          background:#008cff; 
+                          color:#fff; 
+                          border-radius:8px; 
+                          text-decoration:none; 
+                          cursor:pointer; }
 		</style>
 
 	</head>
@@ -642,40 +646,10 @@
 
 
 
-			<!-- Done -->
-							<article id="Done">
-								<h2 class="major">About</h2>
-								<span class="image main"><img src="images/KENLY Golf Rentals.png" alt="" /></span>
-								<p> เราคือ KENLYเช่ากอล์ฟ จำกัด
-                                    ผู้ให้บริการเช่าอุปกรณ์กอล์ฟครบวงจร ที่เน้น ความคุ้มค่า สะดวก และคุณภาพ
-                                    ลูกค้าสามารถเลือกเช่าได้ทั้ง รายชั่วโมง รายวัน หรือรายสัปดาห์
-                                    เราคัดสรรอุปกรณ์ที่สะอาด ได้มาตรฐาน และพร้อมใช้งานเสมอ
-                                    เพื่อให้ทุกคนสามารถ เล่นกอล์ฟได้ง่าย โดยไม่ต้องลงทุนสูง
-
-                                    <p>เราเชื่อว่า “ของดี ไม่จำเป็นต้องแพง แค่เช่ากับเรา ก็พร้อมลงสนาม!”</p>
-                                </p>
-
-
-                               <p> We are KENLY Golf Rentals Co., Ltd.,
-                                    a full-service golf equipment rental provider focused on affordability, convenience, and quality.
-
-                                    Our customers can choose to rent equipment by the hour, by the day, or by the week.
-                                    We carefully select and maintain all gear to ensure it is clean, up to standard, and ready to use.
-
-                                    Our goal is to make golf accessible and enjoyable for everyone, without the need for a large investment.
-
-                                 <p>We believe that “Quality golf doesn’t have to be expensive — just rent with us and you’re ready to play!”
-                                    </p>
-                                </p>
-
-							</article>
-
-
-
 						<!-- About -->
 							<article id="about">
 								<h2 class="major">About</h2>
-								<span class="image main"><img src="images/C-HAN Golf Rentals (2).png" alt="" /></span>
+								<span class="image main"><img src="images/KENLY Golf Rentals.png" alt="" /></span>
 								<p> เราคือ KENLYเช่ากอล์ฟ จำกัด
                                     ผู้ให้บริการเช่าอุปกรณ์กอล์ฟครบวงจร ที่เน้น ความคุ้มค่า สะดวก และคุณภาพ
                                     ลูกค้าสามารถเลือกเช่าได้ทั้ง รายชั่วโมง รายวัน หรือรายสัปดาห์
@@ -703,35 +677,35 @@
 						<!-- Contact -->
 							<article id="contact">
     <h2 class="major">Contact</h2>
-    <form>
-        <div class="fields">
-            <div class="field half">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" required />
-            </div>
-
-            <div class="field half">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" required />
-            </div>
-
-            <div class="field half">
-                <label for="phone">Phone</label>
-                <input type="text" name="phone" id="phone" required />
-            </div>
-
-            <div class="field">
-                <label for="message">Message</label>
-                <textarea name="message" id="message" rows="4"></textarea>
-            </div>
+    <form id="contact_form">
+    <div class="fields">
+        <div class="field half">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required />
         </div>
 
-        <ul class="actions">
-            <li><input type="submit" value="Send Message" class="primary" /></li>
-            <li><input type="reset" value="Reset" /></li>
-        </ul>
-        
-    </form>
+        <div class="field half">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required />
+        </div>
+
+        <div class="field half">
+            <label for="phone">Phone</label>
+            <input type="text" name="phone" id="phone" required />
+        </div>
+
+        <div class="field">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" rows="4"></textarea>
+        </div>
+    </div>
+
+    <ul class="actions">
+        <li><input type="submit" value="Send Message" class="primary" /></li>
+        <li><input type="reset" value="Reset" /></li>
+    </ul>
+</form>
+
 <!--
 <ul class="icons">
   
@@ -840,10 +814,12 @@ async function handleFormSubmit(formId, tableName, dataMapper, isQR=false) {
     e.preventDefault();
     const data = dataMapper();
 
-    if (!data.total_price || data.total_price === 0) {
-      alert('❌ กรุณาเลือกสินค้าและจำนวนก่อนชำระเงิน');
-      return;
-    }
+   // ข้ามเช็ก total_price ถ้าไม่ใช่ฟอร์มเช่าของ (เช่น contact)
+  if (tableName !== 'go01' && (!data.total_price || data.total_price === 0)) {
+  alert('❌ กรุณาเลือกสินค้าและจำนวนก่อนชำระเงิน');
+  return;
+}
+
 
     // บันทึกข้อมูลลง Supabase
     const { error } = await supabase.from(tableName).insert([data]);
