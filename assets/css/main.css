@@ -1713,7 +1713,7 @@ input, select, textarea {
   top: 0px;
   width: 6px;
   height: 12px;
-  border: solid #ff6f61;
+  border: solid #4CAF50;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
@@ -1736,7 +1736,7 @@ input, select, textarea {
   top: 0px;
   width: 6px;
   height: 12px;
-  border: solid #ff6f61;
+  border: solid #4CAF50;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
@@ -1780,7 +1780,7 @@ input, select, textarea {
   top: 0px;
   width: 6px;
   height: 12px;
-  border: solid #ff6f61;
+  border: solid #4CAF50;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
