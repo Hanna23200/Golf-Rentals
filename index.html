@@ -858,9 +858,45 @@ function setupCalculation(checkboxClass, inputNumId, inputPriceId, pricePerUnit)
 setupCalculation('.item-checkbox', 'hours', 'total_price', 49);            
 setupCalculation('.item-checkbox-day', 'day_days', 'day_total_price', 99); 
 setupCalculation('.item-checkbox-week', 'week_weeks', 'week_total_price',159);
-setupCalculation('.item-checkbox-set', 'set_days', 'set_total_price', 299);
+// ========== GOLF SET: ราคาเหมาจ่าย 350/วัน ==========
+const setDaysInput = document.getElementById('set_days');
+const setTotalPrice = document.getElementById('set_total_price');
+const setTotalPriceNum = document.getElementById('set_total_price_num');
+
+// คำนวณราคาเหมาจ่าย
+function calculateSetPrice() {
+  const days = parseInt(setDaysInput.value) || 0;
+  const total = days * 350; // ราคาเหมา ไม่เกี่ยวกับจำนวนอุปกรณ์
+
+  setTotalPrice.value = total > 0 ? total.toLocaleString() + " บาท" : "0 บาท";
+  setTotalPriceNum.value = total;
+}
+
+// อัพเดตราคาเมื่อกรอกจำนวนวัน
+setDaysInput.addEventListener('input', calculateSetPrice);
+
+// อัพเดตราคาเมื่อเลือกอุปกรณ์ (แสดงเฉย ๆ ไม่คูณราคา)
+document.querySelectorAll('.item-checkbox-set').forEach(cb => {
+  cb.addEventListener('change', calculateSetPrice);
+});
+
+calculateSetPrice();
+
+
 
   
+const setCheckboxes = document.querySelectorAll('.item-checkbox-set');
+setCheckboxes.forEach(cb => {
+  cb.addEventListener('change', () => {
+    const selected = document.querySelectorAll('.item-checkbox-set:checked');
+
+    if (selected.length > 4) {
+      cb.checked = false;
+      alert('❌ เลือกได้สูงสุด 4 รายการเท่านั้น');
+    }
+  });
+});
+
 
 
 async function handleFormSubmit(formId, tableName, dataMapper, isQR=false) {
