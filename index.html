@@ -58,6 +58,7 @@
 								<!--<li><a href="#week">Week</a></li>-->
 								<!--<li><a href="#done">Done</a></li>-->
                 <!--<li><a href="#set">SET</a></li>-->
+                <!--<li><a href="#set1">SET</a></li>-->
                 
 							</ul>
 						</nav>
@@ -129,31 +130,36 @@
 
 							<div class="rental-gallery">
 								<div class="rental-item">
-								<img src="images/Q1.png" alt="รายชั่วโมง">
+								<img src="images/Q1.1.png" alt="รายชั่วโมง">
 								
 								<button class="rent-btn" onclick="window.location.href='#hour'">เช่าสินค้า</button>
 								</div>
 
 								<div class="rental-item">
-  						<img src="images/Q2.png" alt="รายวัน">
+  						<img src="images/Q2.1.png" alt="รายวัน">
   						
   						<button class="rent-btn" onclick="window.location.href='#day'">เช่าสินค้า</button>
 						</div>
 
 
 								<div class="rental-item">
-								<img src="images/Q3.png" alt="รายสัปดาห์">
+								<img src="images/Q3.1.png" alt="รายสัปดาห์">
 								
 								<button class="rent-btn" onclick="window.location.href='#week'">เช่าสินค้า</button>
 						</div>
 
 
 								<div class="rental-item">
-  						<img src="images/Q4.png" alt="กอล์ฟเซ็ต">
+  						<img src="images/Q4.1.png" alt="กอล์ฟเซ็ต">
   						
   						<button class="rent-btn" onclick="window.location.href='#set'">เช่าสินค้า</button>
 						</div>
 
+            <div class="rental-item">
+  						<img src="images/Q4.png" alt="กอล์ฟเซ็ต">
+  						
+  						<button class="rent-btn" onclick="window.location.href='#set1'">เช่าสินค้า</button>
+						</div>
 
       </div>
 							</article>
@@ -699,6 +705,74 @@
     </article>
 
 
+    <!-- Set1 Form -->
+    <article id="set1">
+      <h2 class="major"> GOLF SETS</h2>
+      <form id="set1_form">
+        <div class="fields">
+          <div class="field half">
+            <label for="set1_name">ชื่อลูกค้า</label>
+            <input type="text" id="set1_name" required />
+          </div>
+          <div class="field half">
+            <label for="set1_phone">เบอร์โทร</label>
+            <input type="text" id="set1_phone" required />
+          </div>
+          <div class="field half">
+            <label for="set1_sex">ระบุบเพศ</label>
+            <input type="text" id="set1_sex" required />
+          </div>
+          <div class="field half">
+            <label for="set1_height">ส่วนสูง</label>
+            <input type="text" id="set1_height" required />
+          </div>
+          <div class="field">
+            <label>บริการ</label>
+            <div class="checkbox-group-set1">
+          
+         <label> 
+            <input type="checkbox" class="item-checkbox-set1" value="เช็ตไม้กอล์ฟ 12 ไม้ (699฿/วัน) พร้อมถุง" />
+            <span></span> เช็ตไม้กอล์ฟ 12 ไม้ (699฿/วัน) พร้อมถุง
+          </label>
+
+         
+        </div>
+      </div>
+
+     <div class="field half">
+            <label for="set1_start_date">วันที่เริ่มเช่า</label>
+            <input type="date" id="set1_start_date" required />
+          </div>
+          <div class="field half">
+            <label for="set1_start_time">เวลาเริ่มเช่า</label>
+            <input type="time" id="set1_start_time" required />
+          </div>
+
+          <div class="field half">
+            <label for="set1_days">จำนวนวัน (1–7)</label>
+            <input type="number" id="set1_days" min="1" max="7" required />
+          </div>
+
+          <div class="field half">
+            <label for="set1_total_price">ราคารวม (บาท)</label>
+            <input type="text" id="set1_total_price" readonly />
+            <input type="hidden" id="set1_total_price_num" />
+          </div>
+
+          <div class="field">
+            <label for="set1_message">สถานที่นัดหมาย (หมายเหตุ)</label>
+            <textarea id="set1_message" rows="4"></textarea>
+          </div>
+        </div>
+
+        <ul class="actions">
+          <li><input type="submit" value="ยืนยันการเช่า" class="primary" /></li>
+          
+        </ul>
+      </form>
+    </article>
+
+
 
 						<!-- About -->
 							<article id="about">
@@ -858,6 +932,8 @@ function setupCalculation(checkboxClass, inputNumId, inputPriceId, pricePerUnit)
 setupCalculation('.item-checkbox', 'hours', 'total_price', 49);            
 setupCalculation('.item-checkbox-day', 'day_days', 'day_total_price', 99); 
 setupCalculation('.item-checkbox-week', 'week_weeks', 'week_total_price',159);
+setupCalculation('.item-checkbox-set1', 'set1_days', 'set1_total_price',699);
+
 // ========== GOLF SET: ราคาเหมาจ่าย 350/วัน ==========
 const setDaysInput = document.getElementById('set_days');
 const setTotalPrice = document.getElementById('set_total_price');
@@ -1017,6 +1093,29 @@ handleFormSubmit('set_form', 'rentals_set', () => {
     total_price, 
     unique_amount,
     message: document.getElementById('set_message').value,
+    payment_ref: null, 
+    status: "pending",
+    expires_at: new Date(Date.now() + 7*24*60*60*1000).toISOString()
+  }
+}, true);
+
+
+//set1
+handleFormSubmit('set1_form', 'rentals_set1', () => {
+  const total_price = parseFloat(document.getElementById('set1_total_price_num').value) || 0;
+  const unique_amount = (total_price + Math.random()).toFixed(2);
+  return {
+    name: document.getElementById('set1_name').value,
+    phone: document.getElementById('set1_phone').value,
+    sex: document.getElementById('set1_sex').value,
+    height: document.getElementById('set1_height').value,
+    items: Array.from(document.querySelectorAll('.item-checkbox-set1:checked')).map(cb => cb.value).join(', '),
+    start_date: document.getElementById('set1_start_date').value,
+    start_time: document.getElementById('set1_start_time').value,
+    days: parseInt(document.getElementById('set1_days').value),
+    total_price, 
+    unique_amount,
+    message: document.getElementById('set1_message').value,
     payment_ref: null, 
     status: "pending",
     expires_at: new Date(Date.now() + 7*24*60*60*1000).toISOString()
