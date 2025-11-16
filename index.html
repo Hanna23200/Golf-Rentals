@@ -58,6 +58,7 @@
 								<!--<li><a href="#week">Week</a></li>-->
 								<!--<li><a href="#done">Done</a></li>-->
                 <!--<li><a href="#set">SET</a></li>-->
+                <!--<li><a href="#set0">SET</a></li>-->
                 <!--<li><a href="#set1">SET</a></li>-->
                 
 							</ul>
@@ -154,6 +155,14 @@
   						
   						<button class="rent-btn" onclick="window.location.href='#set'">เช่าสินค้า</button>
 						</div>
+
+
+            <div class="rental-item">
+  						<img src="images/Q05.png" alt="กอล์ฟเซ็ต">
+  						
+  						<button class="rent-btn" onclick="window.location.href='#set0'">เช่าสินค้า</button>
+						</div>
+
 
             <div class="rental-item">
   						<img src="images/Q4.png" alt="กอล์ฟเซ็ต">
@@ -506,13 +515,13 @@
           </label>
 
           <label>
-            <input type="checkbox" class="item-checkbox-week" value="6:6-Iron" />
-            <span></span> 6-Iron (เหล็ก 6) (159฿/สัปดาห์)
+            <input type="checkbox" class="item-checkbox-wee" value="6:6-Iron" />
+            Sold out| &nbsp;<span></span> 6-Iron (เหล็ก 6) (159฿/สัปดาห์)
           </label>
 
           <label>
-            <input type="checkbox" class="item-checkbox-week" value="7:7-Iron" />
-            <span></span> 7-Iron (เหล็ก 7) (159฿/สัปดาห์)
+            <input type="checkbox" class="item-checkbox-wee" value="7:7-Iron" />
+            Sold out| &nbsp;<span></span> 7-Iron (เหล็ก 7) (159฿/สัปดาห์)
           </label>
 
           <label>
@@ -521,8 +530,8 @@
           </label>
 
           <label>
-            <input type="checkbox" class="item-checkbox-week" value="9:9-Iron" />
-            <span></span> 9-Iron (เหล็ก 9) (159฿/สัปดาห์)
+            <input type="checkbox" class="item-checkbox-wee" value="9:9-Iron" />
+            Sold out| &nbsp;<span></span> 9-Iron (เหล็ก 9) (159฿/สัปดาห์)
           </label>
 
           <label>
@@ -694,6 +703,122 @@
         </ul>
       </form>
     </article>
+
+
+
+<!-- Set0 Form -->
+    <article id="set0">
+      <h2 class="major"> 8 GOLF SETS</h2>
+      <form id="set0_form">
+        <div class="fields">
+          <div class="field half">
+            <label for="set0_name">ชื่อลูกค้า</label>
+            <input type="text" id="set0_name" required />
+          </div>
+          <div class="field half">
+            <label for="set0_phone">เบอร์โทร</label>
+            <input type="text" id="set0_phone" required />
+          </div>
+          <div class="field half">
+            <label for="set0_sex">ระบุบเพศ</label>
+            <input type="text" id="set0_sex" required />
+          </div>
+          <div class="field half">
+            <label for="set0_height">ส่วนสูง</label>
+            <input type="text" id="set0_height" required />
+          </div>
+            <div class="field">
+            <label>เช็ตไม้กอล์ฟ 8 ไม้ (519฿/วัน) พร้อมถุง</label>
+            <div class="checkbox-group-set0">
+
+           <label>
+            <input type="checkbox" class="item-checkbox-set0" value="0Driver" />
+            <span></span> Driver (หัวไม้หนึ่ง) 
+          </label>
+
+          <label>
+            <input type="checkbox" class="item-checkbox-set0" value="1:3-Wood" />
+            <span></span> 3-Wood (หัวไม้ 3)
+          </label>
+
+          <label>
+            <input type="checkbox" class="item-checkbox-set0" value="2:5-Wood" />
+            <span></span> 5-Wood (หัวไม้ 5) 
+          </label>
+
+          <label>
+            <input type="checkbox" class="item-checkbo-set0" value="3:3-Hybrid" />
+            Sold out| &nbsp;<span></span> 3-Hybrid (ไฮบริด 3) 
+          </label>
+
+          <label>
+            <input type="checkbox" class="item-checkbox-set0" value="4:4-Iron" />
+            <span></span> 4-Iron (เหล็ก 4) 
+          </label>
+
+          <label>
+            <input type="checkbox" class="item-checkbox-set0" value="5:5-Iron" />
+            <span></span> 5-Iron (เหล็ก 5) 
+          </label>
+
+          <label>
+            <input type="checkbox" class="item-checkbox-set0" value="6:6-Iron" />
+            <span></span> 6-Iron (เหล็ก 6) 
+          </label>
+
+          <label>
+            <input type="checkbox" class="item-checkbox-set0" value="7:7-Iron" />
+            <span></span> 7-Iron (เหล็ก 7) 
+          </label>
+
+          <label>
+            <input type="checkbox" class="item-checkbox-set0" value="8:8-Iron" />
+            <span></span> 8-Iron (เหล็ก 8) 
+          </label>
+
+          <label>
+            <input type="checkbox" class="item-checkbox-set0" value="9:9-Iron" />
+            <span></span> 9-Iron (เหล็ก 9) 
+          </label>
+
+        </div>
+      </div>
+
+     <div class="field half">
+            <label for="set0_start_date">วันที่เริ่มเช่า</label>
+            <input type="date" id="set0_start_date" required />
+          </div>
+          <div class="field half">
+            <label for="set0_start_time">เวลาเริ่มเช่า</label>
+            <input type="time" id="set0_start_time" required />
+          </div>
+
+          <div class="field half">
+            <label for="set0_days">จำนวนวัน (1–7)</label>
+            <input type="number" id="set0_days" min="1" max="7" required />
+          </div>
+
+          <div class="field half">
+            <label for="set0_total_price">ราคารวม (บาท)</label>
+            <input type="text" id="set0_total_price" readonly />
+            <input type="hidden" id="set0_total_price_num" />
+          </div>
+
+          <div class="field">
+            <label for="set0_message">สถานที่นัดหมาย (หมายเหตุ)</label>
+            <textarea id="set0_message" rows="4"></textarea>
+          </div>
+        </div>
+
+        <ul class="actions">
+          <li><input type="submit" value="ยืนยันการเช่า" class="primary" /></li>
+          
+        </ul>
+      </form>
+    </article>
+
+
+
 
 
     <!-- Set1 Form -->
@@ -948,9 +1073,6 @@ document.querySelectorAll('.item-checkbox-set').forEach(cb => {
 
 calculateSetPrice();
 
-
-
-  
 const setCheckboxes = document.querySelectorAll('.item-checkbox-set');
 setCheckboxes.forEach(cb => {
   cb.addEventListener('change', () => {
@@ -959,6 +1081,42 @@ setCheckboxes.forEach(cb => {
     if (selected.length > 4) {
       cb.checked = false;
       alert('❌ เลือกได้สูงสุด 4 รายการเท่านั้น');
+    }
+  });
+});
+
+
+
+// ========== GOLF SET 8 ไม้: ราคาเหมาจ่าย 519/วัน ==========
+const set0DaysInput = document.getElementById('set0_days');
+const set0TotalPrice = document.getElementById('set0_total_price');
+const set0TotalPriceNum = document.getElementById('set0_total_price_num');
+
+function calculateSet0Price() {
+  const days = parseInt(set0DaysInput.value) || 0;
+  const total = days * 519;
+
+  set0TotalPrice.value = total > 0 ? total.toLocaleString() + " บาท" : "0 บาท";
+  set0TotalPriceNum.value = total;
+}
+
+set0DaysInput.addEventListener('input', calculateSet0Price);
+
+document.querySelectorAll('.item-checkbox-set0').forEach(cb => {
+  cb.addEventListener('change', calculateSet0Price);
+});
+
+calculateSet0Price();
+
+const set0Checkboxes = document.querySelectorAll('.item-checkbox-set0');
+
+set0Checkboxes.forEach(cb => {
+  cb.addEventListener('change', () => {
+    const selected = document.querySelectorAll('.item-checkbox-set0:checked');
+
+    if (selected.length > 8) {
+      cb.checked = false;
+      alert('❌ เลือกได้สูงสุด 8 รายการเท่านั้น');
     }
   });
 });
@@ -1083,6 +1241,28 @@ handleFormSubmit('set_form', 'rentals_set', () => {
     total_price, 
     unique_amount,
     message: document.getElementById('set_message').value,
+    payment_ref: null, 
+    status: "pending",
+    expires_at: new Date(Date.now() + 7*24*60*60*1000).toISOString()
+  }
+}, true);
+
+//set0
+handleFormSubmit('set0_form', 'rentals_set0', () => {
+  const total_price = parseFloat(document.getElementById('set0_total_price_num').value) || 0;
+  const unique_amount = (total_price + Math.random()).toFixed(2);
+  return {
+    name: document.getElementById('set0_name').value,
+    phone: document.getElementById('set0_phone').value,
+    sex: document.getElementById('set0_sex').value,
+    height: document.getElementById('set0_height').value,
+    items: Array.from(document.querySelectorAll('.item-checkbox-set0:checked')).map(cb => cb.value).join(', '),
+    start_date: document.getElementById('set0_start_date').value,
+    start_time: document.getElementById('set0_start_time').value,
+    days: parseInt(document.getElementById('set0_days').value),
+    total_price, 
+    unique_amount,
+    message: document.getElementById('set0_message').value,
     payment_ref: null, 
     status: "pending",
     expires_at: new Date(Date.now() + 7*24*60*60*1000).toISOString()
