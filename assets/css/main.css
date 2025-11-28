@@ -1636,10 +1636,10 @@ input, select, textarea {
 
 .rental-item {
   text-align: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(226, 128, 128, 0.05);
   padding: 20px;
   border-radius: 12px;
-  width: 300px;
+  width: 290px;
   box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
@@ -1658,17 +1658,17 @@ input, select, textarea {
 
 .rent-btn {
   margin-top: 10px;
-  background-color: #000000;
+  background-color: #bb7a7a;
   color: white;
   border: none;
-  padding: 5px 20px;
+  padding: 4px 15px;
   border-radius: 15px;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .rent-btn:hover {
-  background-color: #0c0430;
+  background-color: #e9784b;
 }
 
 
